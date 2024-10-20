@@ -1,0 +1,78 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <!-- User ID (readonly) -->
+  <mat-form-field appearance="fill">
+    <mat-label>User ID</mat-label>
+    <input matInput type="text" formControlName="user_id" readonly />
+  </mat-form-field>
+
+  <!-- User Name -->
+  <mat-form-field appearance="fill">
+    <mat-label>User Name</mat-label>
+    <input matInput type="text" formControlName="user_name" />
+    <mat-error *ngIf="userForm.get('user_name')!.invalid && userForm.get('user_name')!.touched">
+      User name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- First Name -->
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput type="text" formControlName="first_name" />
+    <mat-error *ngIf="userForm.get('first_name')!.invalid && userForm.get('first_name')!.touched">
+      First name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Last Name -->
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput type="text" formControlName="last_name" />
+    <mat-error *ngIf="userForm.get('last_name')!.invalid && userForm.get('last_name')!.touched">
+      Last name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Email -->
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+    <mat-error *ngIf="userForm.get('email')!.invalid && userForm.get('email')!.touched">
+      Email is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- User Status -->
+  <mat-form-field appearance="fill">
+    <mat-label>User Status</mat-label>
+    <input matInput type="text" formControlName="user_status" />
+    <mat-error *ngIf="userForm.get('user_status')!.invalid && userForm.get('user_status')!.touched">
+      User status is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Department -->
+  <mat-form-field appearance="fill">
+    <mat-label>Department</mat-label>
+    <mat-select formControlName="department">
+      <mat-option value="Operations">Operations</mat-option>
+      <mat-option value="Finance">Finance</mat-option>
+      <mat-option value="Sales">Sales</mat-option>
+      <mat-option value="HR">HR</mat-option>
+      <mat-option value="Legal">Legal</mat-option>
+      <mat-option value="Engineering">Engineering</mat-option>
+      <mat-option value="IT">IT</mat-option>
+      <mat-option value="Marketing">Marketing</mat-option>
+    </mat-select>
+    <mat-error *ngIf="userForm.get('department')!.invalid && userForm.get('department')!.touched">
+      Department is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Submit Button -->
+  <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Submit</button>
+
+  <div *ngIf="userForm.invalid && userForm.touched">
+    <p>Please correct the errors in the form before submitting.</p>
+  </div>
+</form>
+
