@@ -66,7 +66,7 @@ describe('UserlistComponent', () => {
   it('should navigate to edit user page', () => {
     const user = sampleUsers[0];
     component.onEditUser(user);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/user', user.user_id, 'edit']);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/user', user.user_id.toString(), 'edit']);
   });
 
   it('should open the dialog when deleting a user', () => {
@@ -88,7 +88,7 @@ describe('UserlistComponent', () => {
 
     component.onDeleteUser(user);
     tick(); // Simulate async time passage
-    expect(mockUserService.deleteUser).toHaveBeenCalledWith(String(user.user_id));
+    expect(mockUserService.deleteUser).toHaveBeenCalledWith(user.user_id.toString()); // Convert to string to match expected type
     expect(mockUserListService.getUsers).toHaveBeenCalled(); // Check that loadUsers was called
   }));
 

@@ -6,7 +6,10 @@ import { of } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatToolbarModule } from '@angular/material/toolbar'; // Import MatToolbarModule
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule for <mat-select> and <mat-option>
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -35,7 +38,10 @@ describe('UserComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         HttpClientTestingModule,
-        MatToolbarModule // Add MatToolbarModule here
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule // Add MatSelectModule here
       ],
       providers: [
         { provide: UserService, useValue: mockUserService },
