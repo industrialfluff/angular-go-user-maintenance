@@ -66,7 +66,7 @@ describe('UserlistComponent', () => {
   it('should navigate to edit user page', () => {
     const user = sampleUsers[0];
     component.onEditUser(user);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/user', user.user_id.toString(), 'edit']);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/user', user.user_id, 'edit']);
   });
 
   it('should open the dialog when deleting a user', () => {

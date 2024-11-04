@@ -9,7 +9,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule for <mat-select> and <mat-option>
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import BrowserAnimationsModule
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -41,7 +42,8 @@ describe('UserComponent', () => {
         MatToolbarModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSelectModule // Add MatSelectModule here
+        MatSelectModule,
+        BrowserAnimationsModule // Add BrowserAnimationsModule here
       ],
       providers: [
         { provide: UserService, useValue: mockUserService },
