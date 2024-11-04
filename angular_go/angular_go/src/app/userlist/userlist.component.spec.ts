@@ -24,14 +24,20 @@ describe('UserlistComponent', () => {
   ];
 
   beforeEach(async () => {
+    // Create spies for the services
     mockUserListService = jasmine.createSpyObj('UserListService', ['getUsers']);
     mockUserService = jasmine.createSpyObj('UserService', ['deleteUser']);
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
     mockDialog = jasmine.createSpyObj('MatDialog', ['open']);
 
     await TestBed.configureTestingModule({
-      declarations: [UserlistComponent],
-      imports: [MatTableModule, MatPaginatorModule, MatSortModule, BrowserAnimationsModule],
+      imports: [
+        UserlistComponent, // Move UserlistComponent to imports
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        BrowserAnimationsModule
+      ],
       providers: [
         { provide: UserListService, useValue: mockUserListService },
         { provide: UserService, useValue: mockUserService },
@@ -44,8 +50,8 @@ describe('UserlistComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserlistComponent);
     component = fixture.componentInstance;
-    mockUserListService.getUsers.and.returnValue(of(sampleUsers));
-    fixture.detectChanges();
+    mockUserListService.getUsers.and.returnValue(of(sampleUsers)); // Mock the user data
+    fixture.detectChanges(); // Trigger component lifecycle
   });
 
   it('should create', () => {
@@ -66,7 +72,7 @@ describe('UserlistComponent', () => {
   it('should open the dialog when deleting a user', () => {
     const user = sampleUsers[0];
     mockDialog.open.and.returnValue({
-      afterClosed: () => of(true)
+      afterClosed: () => of(true) // Simulate dialog closure with 'true' response
     } as any);
 
     component.onDeleteUser(user);
@@ -76,21 +82,21 @@ describe('UserlistComponent', () => {
   it('should delete a user and refresh the list on confirm', fakeAsync(() => {
     const user = sampleUsers[0];
     mockDialog.open.and.returnValue({
-      afterClosed: () => of(true)
+      afterClosed: () => of(true) // Simulate dialog closure with 'true' response
     } as any);
-    mockUserService.deleteUser.and.returnValue(of({}));
+    mockUserService.deleteUser.and.returnValue(of({})); // Mock successful deletion
 
     component.onDeleteUser(user);
-    tick(); // simulate async passage of time
+    tick(); // Simulate async time passage
     expect(mockUserService.deleteUser).toHaveBeenCalledWith(String(user.user_id));
-    expect(mockUserListService.getUsers).toHaveBeenCalled(); // To verify loadUsers call
+    expect(mockUserListService.getUsers).toHaveBeenCalled(); // Check that loadUsers was called
   }));
 
   it('should log error on deletion failure', fakeAsync(() => {
     const user = sampleUsers[0];
-    spyOn(console, 'error');
+    spyOn(console, 'error'); // Spy on console.error
     mockDialog.open.and.returnValue({
-      afterClosed: () => of(true)
+      afterClosed: () => of(true) // Simulate dialog closure with 'true' response
     } as any);
     mockUserService.deleteUser.and.returnValue(throwError(() => new Error('Deletion failed')));
 
