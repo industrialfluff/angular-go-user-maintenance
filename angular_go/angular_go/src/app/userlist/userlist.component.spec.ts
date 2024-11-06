@@ -88,7 +88,7 @@ describe('UserlistComponent', () => {
 
     component.onDeleteUser(user);
     tick(); // Simulate async time passage
-    expect(mockUserService.deleteUser).toHaveBeenCalledWith(user.user_id.toString()); // Convert to string to match expected type
+    expect(mockUserService.deleteUser).toHaveBeenCalledWith(user.user_id); 
     expect(mockUserListService.getUsers).toHaveBeenCalled(); // Check that loadUsers was called
   }));
 

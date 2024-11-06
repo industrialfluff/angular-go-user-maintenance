@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   // Get a user by ID
-  getUser(userId: string): Observable<any> {
+  getUser(userId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
 
@@ -21,17 +21,17 @@ export class UserService {
   }
 
   // Update a user (PUT)
-  putUser(userId: string, userData: any): Observable<any> {
+  putUser(userId: number, userData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${userId}`, userData);
   }
 
   // Partially update a user (PATCH)
-  patchUser(userId: string, partialData: any): Observable<any> {
+  patchUser(userId: number, partialData: any): Observable<any> {
     return this.http.patch(`${this.apiUrl}/${userId}`, partialData);
   }
 
   // Delete a user (DELETE)
-  deleteUser(userId: string): Observable<any> {
+  deleteUser(userId: number): Observable<any> {
     console.log("deleting the user ", userId);
     return this.http.delete(`${this.apiUrl}/${userId}`);
   }
